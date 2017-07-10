@@ -1,0 +1,11 @@
+[settings]
+arch=avr
+build_type=Release
+compiler=gcc
+compiler.libcxx=libstdc++11
+compiler.version=4.9
+os=Arduino
+os.board=XYZrobot1280
+
+[build_requires]
+arduino/1.0.0@anton-matosov/stable
