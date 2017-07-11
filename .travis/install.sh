@@ -32,10 +32,11 @@ fi
 # pip install conan_package_tools
 
 TMP=$(mktemp -d)
-git clone https://github.com/anton-matosov/conan.git $TMP/conan
-git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools
+git clone https://github.com/anton-matosov/conan.git $TMP/conan.git
+git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
 
-export PYTHONPATH="$TMP/conan:$TMP/conan-package-tools:$PYTHONPATH"
+export PYTHONPATH="$TMP/conan.git:$TMP/conan-package-tools.git:$PYTHONPATH"
+export PATH="$TMP/conan:$PATH"
 
 echo -n """#!/usr/bin/env python
 
@@ -44,7 +45,8 @@ sys.path.append('$TMP/conan')
 
 from conans.conan import main
 main(sys.argv[1:])
-""" > /usr/local/bin/conan
+""" > $TMP/conan
+chmod +x $TMP/conan
 
 conan user
 
