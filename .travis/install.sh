@@ -9,7 +9,6 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     brew install pyenv-virtualenv
     brew install cmake || true
 
-    brew tap caskroom
     # brew tap caskroom/versions
     brew cask install arduino
 
