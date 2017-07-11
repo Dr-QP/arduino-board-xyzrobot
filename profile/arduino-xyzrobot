@@ -2,3 +2,4 @@ include(arduino)
 
 [settings]
 os.board=XYZrobot1280
+arch=avr
