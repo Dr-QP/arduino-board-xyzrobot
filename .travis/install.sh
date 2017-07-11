@@ -25,7 +25,7 @@ fi
 pip install conan --upgrade
 pip install conan_package_tools
 
+conan user
+
 BASEDIR=$(dirname "$0")
 cp -f "$BASEDIR/settings.yml" "$HOME/.conan/"
-
-conan user
