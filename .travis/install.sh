@@ -31,15 +31,16 @@ fi
 # pip install conan --upgrade
 # pip install conan_package_tools
 
+echo "=============="
+set
+echo "=============="
+
 TMP=$(mktemp -d)
 git clone https://github.com/anton-matosov/conan.git $TMP/conan.git
 git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
 
 pip install -r "$TMP/conan.git/conans/requirements.txt"
 
-echo "=============="
-set
-echo "=============="
 
 TEMPDIR=${TMPDIR:-/tmp}
 echo -n """#!/usr/bin/env bash
