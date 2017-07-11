@@ -32,8 +32,8 @@ fi
 # pip install conan_package_tools
 
 TMP=$(mktemp -d)
-git clone git@github.com:anton-matosov/conan.git $TMP/conan
-git clone git@github.com:conan-io/conan-package-tools.git $TMP/conan-package-tools
+git clone https://github.com/anton-matosov/conan.git $TMP/conan
+git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools
 
 export PYTHONPATH="$TMP/conan:$TMP/conan-package-tools:$PYTHONPATH"
 
