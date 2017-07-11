@@ -36,7 +36,7 @@ git clone https://github.com/anton-matosov/conan.git $TMP/conan.git
 git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
 
 export PYTHONPATH="$TMP/conan.git:$TMP/conan-package-tools.git:$PYTHONPATH"
-export PATH="$TMP/conan:$PATH"
+export PATH="$TMP:$PATH"
 
 echo -n """#!/usr/bin/env python
 
