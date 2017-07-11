@@ -36,8 +36,8 @@ set
 echo "=============="
 
 TMP=$(mktemp -d)
-git clone https://github.com/anton-matosov/conan.git $TMP/conan.git
-git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
+git clone -b develop https://github.com/anton-matosov/conan.git $TMP/conan.git
+git clone -b develop https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
 
 pip install -r "$TMP/conan.git/conans/requirements.txt"
 
