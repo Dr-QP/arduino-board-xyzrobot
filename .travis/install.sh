@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 set -x
@@ -37,8 +37,14 @@ git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package
 
 pip install -r "$TMP/conan.git/conans/requirements.txt"
 
+echo -n """#!/usr/bin/env bash
+
 export PYTHONPATH="$TMP/conan.git:$TMP/conan-package-tools.git:$PYTHONPATH"
 export PATH="$TMP:$PATH"
+
+""" > $TMPDIR/conan_bootstrap.sh
+
+. $TMPDIR/conan_bootstrap.sh
 
 echo -n """#!/usr/bin/env python
 
@@ -49,6 +55,8 @@ from conans.conan import main
 main(sys.argv[1:])
 """ > $TMP/conan
 chmod +x $TMP/conan
+
+
 
 conan user
 
