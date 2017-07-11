@@ -35,6 +35,8 @@ TMP=$(mktemp -d)
 git clone https://github.com/anton-matosov/conan.git $TMP/conan.git
 git clone https://github.com/conan-io/conan-package-tools.git $TMP/conan-package-tools.git
 
+pip install -r "$TMP/conan.git/conans/requirements.txt"
+
 export PYTHONPATH="$TMP/conan.git:$TMP/conan-package-tools.git:$PYTHONPATH"
 export PATH="$TMP:$PATH"
 
