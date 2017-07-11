@@ -10,7 +10,7 @@ class ArduinoboardxyzrobotTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = "arduino-board-xyzrobot/1.0.0@%s/%s" % (username, channel)
     generators = "cmake"
-    build_requires = "arduino/1.0.0@anton-matosov/stable"
+    build_requires = "conan-arduino-toolchain/1.0.0@anton-matosov/stable"
 
 
     def build(self):

@@ -13,5 +13,5 @@ if __name__ == "__main__":
         "arch": "avr"
     }, env_vars={
         "CC": "gcc"
-    })
+    }, build_requires=["conan-arduino-toolchain/1.0.0@anton-matosov/stable"])
     builder.run()
