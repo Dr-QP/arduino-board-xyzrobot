@@ -22,9 +22,6 @@ if [[ $TRAVIS == true ]]; then
         pyenv virtualenv 2.7.10 conan
         pyenv rehash
         pyenv activate conan
-    else
-        sudo apt-get update 
-        sudo apt-get install arduino arduino-core
     fi
 fi
 
