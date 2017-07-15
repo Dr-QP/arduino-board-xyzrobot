@@ -11,6 +11,8 @@ if __name__ == "__main__":
         "compiler.version": "4.9",
         "compiler.libcxx": "libstdc++11",
         "arch": "avr"
+    }, options={
+        "conan-arduino-toolchain": ["arduino_version=1.8.3"]
     }, env_vars={
         "CC": "gcc"
     }, build_requires={
