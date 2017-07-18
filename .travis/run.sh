@@ -3,9 +3,6 @@
 set -e
 set -x
 
-TEMPDIR=${TMPDIR:-/tmp}
-. $TEMPDIR/conan_bootstrap.sh
-
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     if which pyenv > /dev/null; then
         eval "$(pyenv init -)"
@@ -13,4 +10,4 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pyenv activate conan
 fi
 
-python build.py --build=missing --build=conan-arduino-toolchain
+python build.py
