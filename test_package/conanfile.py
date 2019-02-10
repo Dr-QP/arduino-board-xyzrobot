@@ -2,21 +2,12 @@ from conans import ConanFile, CMake
 import os
 
 
-channel = os.getenv("CONAN_CHANNEL", "stable")
-username = os.getenv("CONAN_USERNAME", "anton-matosov")
-
-
-class ArduinoboardxyzrobotTestConan(ConanFile):
-    settings = "os", "compiler", "build_type", "arch"
-    requires = "arduino-board-xyzrobot/1.0.0@%s/%s" % (username, channel)
+class ArduinoBoardXYZRobotTestConan(ConanFile):
     generators = "cmake"
-    build_requires = "conan-arduino-toolchain/1.0.0@anton-matosov/stable"
-
 
     def build(self):
         cmake = CMake(self)
-        # Current dir is "test_package/build/<build_id>" and CMakeLists.txt is in "test_package"
-        cmake.configure(source_dir=self.conanfile_directory, build_dir="./")
+        cmake.configure()
         cmake.build()
 
     def imports(self):

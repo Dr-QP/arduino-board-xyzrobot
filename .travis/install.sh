@@ -1,28 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 set -x
 
-if [[ $TRAVIS == true ]]; then
-    if [[ "$(uname -s)" == 'Darwin' ]]; then
-        brew update || brew update
-        brew outdated pyenv || brew upgrade pyenv
-        brew install pyenv-virtualenv
-        brew install cmake || true
-
-        if which pyenv > /dev/null; then
-            eval "$(pyenv init -)"
-        fi
-
-        pyenv install 2.7.10
-        pyenv virtualenv 2.7.10 conan
-        pyenv rehash
-        pyenv activate conan
-    fi
+if [[ "$(uname -s)" == 'Darwin' ]]; then
+    brew update
+    brew upgrade python
+elif [[ -z "$CONAN_DOCKER_IMAGE" ]]; then
+    sudo dpkg --add-architecture i386
+    sudo apt update
+    sudo apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386 multiarch-support
 fi
 
-pip install git+https://github.com/anton-matosov/conan.git --upgrade
-pip install git+https://github.com/conan-io/conan-package-tools.git
+pip3 install conan conan_package_tools --upgrade
 
 conan user
-

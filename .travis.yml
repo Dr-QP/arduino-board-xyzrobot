@@ -1,13 +1,10 @@
 
 env:
-   global:
-     - CONAN_REFERENCE: "arduino-board-xyzrobot/1.0.0"
-     - CONAN_UPLOAD: "https://api.bintray.com/conan/anton-matosov/general"
-     - CONAN_USERNAME: "anton-matosov"
-     - CONAN_LOGIN_USERNAME: "anton-matosov"
-     - CONAN_CHANNEL: "testing"
-     - CONAN_STABLE_BRANCH_PATTERN: "release/*"
-     
+  global:
+    - CONAN_USERNAME: "conan"
+    - CONAN_CHANNEL: "testing"
+    - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+
 linux: &linux
    os: linux
    sudo: required
@@ -20,14 +17,18 @@ osx: &osx
    language: generic
 matrix:
    include:
-
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=4.9
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7 DRQP_NATIVE_BUILD=1
+   
+      - <<: *linux
+        env: DRQP_ARDUINO_BUILD=1
 
-      - os: osx
-        osx_image: xcode8.3
-        language: generic
-        env: CONAN_CURRENT_PAGE=1
+      - <<: *osx
+        osx_image: xcode10
+        env: 
+          - CONAN_APPLE_CLANG_VERSIONS=10.0
+          - DRQP_NATIVE_BUILD=1
+          - DRQP_ARDUINO_BUILD=1
 
 install:
   - chmod +x .travis/install.sh
