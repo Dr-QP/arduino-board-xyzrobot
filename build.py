@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from conan.packager import ConanMultiPackager
 from conans.tools import os_info
 import copy
@@ -25,7 +27,13 @@ class ArduinoPackager(ConanMultiPackager):
 
 
 if __name__ == "__main__":
-    builder = ArduinoPackager(build_policy="outdated")
+    builder = ArduinoPackager(build_policy="outdated",
+        upload="https://api.bintray.com/conan/anton-matosov/general",
+        login_username="anton-matosov",
+        username="conan",
+        channel="testing",
+        stable_branch_pattern="release/*",
+    )
 
     builder.addArduino()
 
