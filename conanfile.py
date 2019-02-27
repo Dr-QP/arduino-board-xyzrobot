@@ -1,7 +1,7 @@
 from conans import ConanFile
 import os
 
-class ArduinoboardxyzrobotConan(ConanFile):
+class ArduinoBoardXYZRobotConan(ConanFile):
     name = "arduino-board-xyzrobot"
     version = "1.0.0"
     license = "LGPL"

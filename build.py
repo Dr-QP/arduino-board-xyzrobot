@@ -28,12 +28,12 @@ class ArduinoPackager(ConanMultiPackager):
 
 if __name__ == "__main__":
     builder = ArduinoPackager(build_policy="outdated",
-        upload="https://api.bintray.com/conan/anton-matosov/general",
-        login_username="anton-matosov",
-        username="conan",
-        channel="testing",
-        stable_branch_pattern="release/*",
-    )
+                              upload="https://api.bintray.com/conan/anton-matosov/general",
+                              login_username="anton-matosov",
+                              username="conan",
+                              channel="testing",
+                              stable_branch_pattern="release/*",
+                              )
 
     builder.addArduino()
 
