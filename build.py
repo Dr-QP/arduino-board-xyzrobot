@@ -5,49 +5,22 @@ from conans.tools import os_info
 import copy
 import os
 
-
-class ArduinoPackager(ConanMultiPackager):
-    def addArduino(self, options={}):
-        if os.getenv("CONAN_DOCKER_IMAGE") or os.getenv("CONAN_USE_DOCKER"):
-            # Arduino builds fail if conan was lunched with docker image specification
-            return None
-
-        self.add(settings={
-            "os": "Arduino",
-            "os.board": "XYZrobot1280",
-            "compiler": "gcc",
-            "compiler.version": "7.2",
-            "compiler.libcxx": "libstdc++11",
-            "arch": "avr"
-        }, build_requires={
-            "*": [
-                "arduino-sdk/1.8.11@conan/testing",
-                "arduino-cmake/1.0.0@conan/testing",
-                "cmake_installer/3.16.3@conan/stable"
-            ]
-        })
-
-
 if __name__ == "__main__":
-    builder = ArduinoPackager(build_policy="outdated",
-                              upload="https://api.bintray.com/conan/anton-matosov/general",
-                              login_username="anton-matosov",
-                              username="conan",
-                              channel="testing",
-                              stable_branch_pattern="release/*",
-                              )
+    builder = ConanMultiPackager(build_policy="outdated")
 
-    builder.addArduino()
-
-    if os_info.is_linux:
-        filtered_builds = []
-        for settings, options, env_vars, build_requires in builder.builds:
-            filtered_builds.append(
-                [settings, options, env_vars, build_requires])
-            new_options = copy.copy(options)
-            new_options["arduino-sdk:host_os"] = "linux32"
-            filtered_builds.append(
-                [settings, new_options, env_vars, build_requires])
-        builder.builds = filtered_builds
+    builder.add(settings={
+        "os": "Arduino",
+        "os.board": "XYZrobot1280",
+        "compiler": "gcc",
+        "compiler.version": "7.3",
+        "compiler.libcxx": "libstdc++11",
+        "arch": "avr"
+    }, build_requires={
+        "*": [
+            "arduino-sdk/1.8.11@conan/testing",
+            "arduino-cmake/1.0.0@conan/testing",
+            "cmake_installer/3.16.3@conan/stable"
+        ]
+    })
 
     builder.run()
