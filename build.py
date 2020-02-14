@@ -16,11 +16,9 @@ class ArduinoPackager(ConanMultiPackager):
             "os": "Arduino",
             "os.board": "XYZrobot1280",
             "compiler": "gcc",
-            "compiler.version": "5.4",
+            "compiler.version": "7.2",
             "compiler.libcxx": "libstdc++11",
             "arch": "avr"
-        }, options=options, env_vars={
-            "CC": "gcc"
         }, build_requires={
             "*": [
                 "arduino-sdk/1.8.11@conan/testing",
