@@ -15,5 +15,6 @@ class ArduinoBoardXYZRobotConan(ConanFile):
         self.copy("*", dst="profile", src="profile", keep_path=True)
 
     def package_info(self):
+        self.env_info.ARDUINO_DEFAULT_BOARD = "XYZrobot1280"
         self.env_info.ARDUINO_BOARD_PATH = os.path.join(
             self.package_folder, "XYZrobot")
