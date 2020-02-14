@@ -22,7 +22,11 @@ class ArduinoPackager(ConanMultiPackager):
         }, options=options, env_vars={
             "CC": "gcc"
         }, build_requires={
-            "*": ["arduino-toolchain/1.8.8@conan/testing"]
+            "*": [
+                "arduino-sdk/1.8.11@conan/testing",
+                "arduino-cmake/1.0.0@conan/testing",
+                "cmake_installer/3.16.3@conan/stable"
+            ]
         })
 
 
